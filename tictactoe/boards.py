@@ -41,10 +41,16 @@ class Board(object):
 		"""
 		return self.state
 
+	def statestring(self):
+		"""
+		Return the board state in a way that's nicer to print
+		"""
+		state = self.state
+		return '%s\n%s\n%s' %(state[:3], state[3:6], state[6:])
+
 	def winning_move(self):
 		"""
 		Check if the current state of the board is a winning configuration
-		## NOT IMPLEMENTED YET
 		"""
 		state = self.state
 

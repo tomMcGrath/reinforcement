@@ -40,8 +40,8 @@ class Game(object):
 
 
 board = boards.Board()
-player1 = players.HumanPlayer('x')
-player2 = players.HumanPlayer('o')
+player1 = players.RandomPlayer('x')
+player2 = players.RandomPlayer('o')
 
 game = Game(board, player1, player2)
 winner = game.play()
