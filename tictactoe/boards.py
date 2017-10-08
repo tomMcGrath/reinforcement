@@ -18,6 +18,9 @@ class Board(object):
 	def __init__(self, state='---------'):
 		self.state = state
 
+	def set_state(self, state):
+		self.state = state
+
 	def is_valid_move(self, move):
 		"""
 		Check if proposed move is valid. Moves are tuple of form (index, symbol).
@@ -53,6 +56,7 @@ class Board(object):
 		Check if the current state of the board is a winning configuration
 		"""
 		state = self.state
+		#print '\n', self.statestring()
 
 		## Vertical winning
 		for i in range(0,3):
@@ -74,6 +78,12 @@ class Board(object):
 		## Otherwise not winning
 		return False
 
+	def draw_move(self):
+		"""
+		Check for draws
+		"""
+		return len(self.legal_moves()) == 0
+
 	def legal_moves(self):
 		"""
 		Returns a list of legal moves in the form of a tuple of indices of blank spaces
@@ -81,3 +91,15 @@ class Board(object):
 		return [idx.start() for idx in re.finditer('-', self.state)]
 
 
+	def legal_movestrings(self, symbol):
+		"""
+		Returns a list of all allowed board states
+		"""
+		movelist = self.legal_moves()
+		state = self.state
+
+		movestrings = []
+		for move in movelist:
+			movestrings.append(state[:move] + symbol + state[move+1:])
+
+		return movestrings
